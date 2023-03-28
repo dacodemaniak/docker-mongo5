@@ -1,0 +1,30 @@
+version: '3.7'
+services: 
+  mongo5:
+    container_name: mongo5-dev
+    image: mongo:5.0
+    env_file:
+      - .env
+    networks:
+      - mongo-network
+    ports:
+      - '60017:27017'
+    volumes:
+      - ./data:/data/db
+  
+  mongo-express: 
+    container_name: mongo-express
+    image: mongo-express:0.54
+    depends_on:
+      - mongo5
+    networks:
+      - mongo-network
+    env_file:
+      - .env
+    ports:
+      - '6082:8081'
+    volumes:
+      - ./data:/data/db
+networks: 
+  mongo-network: 
+    driver: bridge

@@ -1,0 +1,10 @@
+.env
+
+# Mongo database
+WiredTiger*
+*.wt
+*.data
+*.bson
+*.lock
+journal
+.dbshell
